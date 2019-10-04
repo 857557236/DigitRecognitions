@@ -1,0 +1,22 @@
+C:\Users\Clame\Desktop\digit recognition\bin\Debug\digit recognition.exe.config
+C:\Users\Clame\Desktop\digit recognition\bin\Debug\digit recognition.exe
+C:\Users\Clame\Desktop\digit recognition\bin\Debug\digit recognition.pdb
+C:\Users\Clame\Desktop\digit recognition\obj\Debug\digit recognition.csprojAssemblyReference.cache
+C:\Users\Clame\Desktop\digit recognition\obj\Debug\digit_recognition.Form1.resources
+C:\Users\Clame\Desktop\digit recognition\obj\Debug\digit_recognition.Properties.Resources.resources
+C:\Users\Clame\Desktop\digit recognition\obj\Debug\digit recognition.csproj.GenerateResource.cache
+C:\Users\Clame\Desktop\digit recognition\obj\Debug\digit recognition.csproj.CoreCompileInputs.cache
+C:\Users\Clame\Desktop\digit recognition\obj\Debug\digit recognition.exe
+C:\Users\Clame\Desktop\digit recognition\obj\Debug\digit recognition.pdb
+C:\Users\Clame\Desktop\digit recognitionMachineLearning\obj\Debug\digit recognition.csprojAssemblyReference.cache
+C:\Users\Clame\Desktop\digit recognitionMachineLearning\obj\Debug\digit_recognition.Form1.resources
+C:\Users\Clame\Desktop\digit recognitionMachineLearning\obj\Debug\digit_recognition.Properties.Resources.resources
+C:\Users\Clame\Desktop\digit recognitionMachineLearning\obj\Debug\digit recognition.csproj.GenerateResource.cache
+C:\Users\Clame\Desktop\digit recognitionMachineLearning\obj\Debug\digit recognition.csproj.CoreCompileInputs.cache
+C:\Users\Clame\Desktop\digit recognitionMachineLearning\obj\Debug\digit recognition.exe
+C:\Users\Clame\Desktop\digit recognitionMachineLearning\obj\Debug\digit recognition.pdb
+C:\Users\Clame\Desktop\digit recognitionMachineLearning\bin\Debug\digit recognition.exe.config
+C:\Users\Clame\Desktop\digit recognitionMachineLearning\bin\Debug\digit recognition.exe
+C:\Users\Clame\Desktop\digit recognitionMachineLearning\bin\Debug\digit recognition.pdb
+C:\Users\Clame\Desktop\digit recognitionMachineLearning\obj\Debug\digit_recognition.FormChoice.resources
+C:\Users\Clame\Desktop\digit recognitionMachineLearning\obj\Debug\digit_recognition.FormDraw.resources

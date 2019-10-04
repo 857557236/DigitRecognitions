@@ -1,0 +1,7 @@
+C:\Users\Clame\Desktop\Education\bin\Debug\Education.exe.config
+C:\Users\Clame\Desktop\Education\bin\Debug\Education.exe
+C:\Users\Clame\Desktop\Education\bin\Debug\Education.pdb
+C:\Users\Clame\Desktop\Education\obj\Debug\Education.csprojAssemblyReference.cache
+C:\Users\Clame\Desktop\Education\obj\Debug\Education.csproj.CoreCompileInputs.cache
+C:\Users\Clame\Desktop\Education\obj\Debug\Education.exe
+C:\Users\Clame\Desktop\Education\obj\Debug\Education.pdb
