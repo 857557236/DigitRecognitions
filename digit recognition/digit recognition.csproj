@@ -64,6 +64,7 @@
     <Compile Include="FormDraw.Designer.cs">
       <DependentUpon>FormDraw.cs</DependentUpon>
     </Compile>
+    <Compile Include="Langs.cs" />
     <Compile Include="Neuron.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

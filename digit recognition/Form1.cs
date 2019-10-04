@@ -38,7 +38,7 @@ namespace digit_recognition
             if (hours.Length == 1) hours = "0" + hours;
             if (minutes.Length == 1) minutes = "0" + minutes;
             if (seconds.Length == 1) seconds = "0" + seconds;
-            if (!text.Equals("Загрузка весов из файла..."))
+            if (!text.Equals(Langs.load))
             {
                 TextToConsole.Enqueue("\n\r\n\r" + ("[" + hours + ":" + minutes + ":" + seconds + "] ") + text);
             }
@@ -47,9 +47,25 @@ namespace digit_recognition
             }
             
         }
+
+
+        private void updateLanguageOnForm(string s)
+        {
+            Langs.updateLang(s);
+            Text = Langs.titleForm1;
+            button1.Text = Langs.letsGo;
+            button2.Text = Langs.recogDigit;
+            groupBox2.Text = Langs.settingSelection;
+            label2.Text = Langs.selectionText;
+            button3.Text = Langs.goContinue;
+            button4.Text = Langs.error;
+            groupBox1.Text = Langs.textOutput;
+        }
+
         public Form1()
         {
             InitializeComponent();
+            updateLanguageOnForm("Russian");
             RunConsole();
             for (int i = 0; i < 20; i++)
                 for(int j = 0; j<20; j++)
@@ -57,10 +73,10 @@ namespace digit_recognition
             label3.Visible = false;
             button4.Visible = false;
             label3.Location = new Point(34, 221);
-            WriteToConsole("Загрузка весов из файла...");
+            WriteToConsole(Langs.load);
             ReadWriteWeights.CreateOrLoadWeights(neurons);
-            WriteToConsole("Загрузка прошла успешно!");
-            WriteToConsole("Программа запущена успешно. Для начала выберите графический файл с рукописной цифрой на белом фоне...");
+            WriteToConsole(Langs.loadSuccessful);
+            WriteToConsole(Langs.startSuccessful);
         }
 
         private async void RunConsole()
@@ -75,12 +91,12 @@ namespace digit_recognition
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            WriteToConsole("Начало работы...");
+            WriteToConsole(Langs.startWork);
             FormChoice fc = new FormChoice();
             fc.ShowDialog();
             if(OriginalImage== null)
             {
-                WriteToConsole("Повторите попытку!");
+                WriteToConsole(Langs.repeat);
                 return;
             }
             button2.Enabled = true;
@@ -93,15 +109,15 @@ namespace digit_recognition
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            WriteToConsole("Начинается подготовка изображения...");
-            WriteToConsole("Обрезка изображения...");
+            WriteToConsole(Langs.prepareImageStart);
+            WriteToConsole(Langs.cropImage);
             Bitmap newImage = new Bitmap(OriginalImage);
             newImage = CropImage(newImage);
-            WriteToConsole("Сжатие изображения...");
+            WriteToConsole(Langs.compressionImage);
             newImage = new Bitmap(newImage, 20, 20);
-            WriteToConsole("Обновление в блоке изображения слева...");
+            WriteToConsole(Langs.updateImage);
             pictureBox1.Image = newImage;
-            WriteToConsole("Сканирование изображения...");
+            WriteToConsole(Langs.scanImage);
             Original20x20SizeImage = new Bitmap(20, 20);
             for (int i = 0; i < 20; i++)
                 for (int j = 0; j < 20; j++) Original20x20SizeImage.SetPixel(i, j, newImage.GetPixel(i, j));
@@ -216,18 +232,9 @@ namespace digit_recognition
             int tempRES = -1;
 
             for (int i = 0; i < 10; i++) if (SumWeights.Max() == SumWeights[i]) tempRES = i;
-            WriteToConsole("Сканирование завершено!");
+            WriteToConsole(Langs.scanEnded);
 
-            if(tempRES == -1)
-            {
-                WriteToConsole("Цифра не была опознана!");
-                label3.Text = "?";
-                label3.Visible = true;
-                button4.Visible = true;
-                WriteToConsole("====================================");
-                return;
-            }
-                WriteToConsole("Опознана цифра " + tempRES + " .");
+                WriteToConsole(Langs.foundDigit + " " + tempRES + " .");
                 label3.Text = tempRES.ToString();
                 label3.Visible = true;
             button4.Visible = true;
@@ -243,9 +250,21 @@ namespace digit_recognition
                 count++;
             }
             string dir = "ErrorsImages\\" + count.ToString() + ".png";
-            WriteToConsole("Ошибочное распознавание сохранено: " + dir);
+            WriteToConsole(Langs.errorRecogSaved + " " + dir);
             OriginalImage.Save(dir);
-            MessageBox.Show("Оригинальное изображение было сохранено в папке ErrorsImages, находящейся рядом с запускаемым файлом программы. Его можно использовать для более точного обучения сети, чтобы таких ошибок более не возникало!","Сохранено");
+            MessageBox.Show(Langs.errorRecogSaveInfo, Langs.saved);
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton1.Checked)
+            {
+                updateLanguageOnForm("Russian");
+            }
+            else
+            {
+                updateLanguageOnForm("English");
+            }
         }
     }
 }

@@ -12,9 +12,19 @@ namespace digit_recognition
 {
     public partial class FormDraw : Form
     {
+
+        private void updateLanguageOnForm(string s)
+        {
+            Langs.updateLang(s);
+            Text = Langs.titleFormDraw;
+            button1.Text = Langs.recog;
+            button2.Text = Langs.clean;
+        }
+
         public FormDraw()
         {
             InitializeComponent();
+            updateLanguageOnForm(Langs.lang);
             Clean();
         }
 
@@ -35,7 +45,7 @@ namespace digit_recognition
         private void Button1_Click(object sender, EventArgs e)
         {
             Form1.OriginalImage = new Bitmap(pictureBox1.Image);
-            Form1.WriteToConsole("Изображение нарисовано и готово к распознаванию!");
+            Form1.WriteToConsole(Langs.goodDraw);
             Close();
         }
 
