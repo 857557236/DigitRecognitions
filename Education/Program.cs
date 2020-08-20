@@ -20,7 +20,9 @@ namespace Education
                 Console.ReadKey();
                 return;
             }
-            Console.WriteLine("//Эта программа была сделана на скорую руку, тут почти отсутствуют \"проверки на дурака\" и т.д. Идеальная работоспособность не гарантируется!");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Эта программа была сделана на скорую руку, в ней почти отсутствуют различные проверки введённых данных и т.д. Идеальная работоспособность не гарантируется!\n");
+            Console.ResetColor();
             Console.WriteLine("1) Использовать готовые веса");
             Console.WriteLine("2) Создать новые, чистые");
             Console.Write("Ваш выбор: ");

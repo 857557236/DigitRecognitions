@@ -32,7 +32,7 @@ namespace digit_recognition
         public static string selectionText = "Передвиньте ползунок так, чтобы большая\nчасть цифры стала красной и не было\nвыделено лишнего";
         public static string goContinue = "Готово, продолжить";
         public static string error = "Неверно!";
-        public static string textOutput = "Текстовый вывод";
+        public static string textOutput = "Консоль";
 
         public static string titleFormChoice = "Выберите способ ввода изображения";
         public static string imageFromComputer = "Выбрать изображение с компьютера";
@@ -76,7 +76,7 @@ namespace digit_recognition
                 selectionText = "Передвиньте ползунок так, чтобы большая\nчасть цифры стала красной и не было\nвыделено лишнего";
                 goContinue = "Готово, продолжить";
                 error = "Неверно!";
-                textOutput = "Текстовый вывод";
+                textOutput = "Консоль";
 
                 titleFormChoice = "Выберите способ ввода изображения";
                 imageFromComputer = "Выбрать изображение с компьютера";
@@ -118,7 +118,7 @@ namespace digit_recognition
                 selectionText = "Move the slider so that most of the number turns\nred and there is no excess";
                 goContinue = "Done, continue";
                 error = "Wrong!";
-                textOutput = "Text output";
+                textOutput = "Console";
 
 
                 titleFormChoice = "Choose image input method";

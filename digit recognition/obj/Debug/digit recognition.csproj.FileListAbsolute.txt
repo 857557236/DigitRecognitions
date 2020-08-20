@@ -31,3 +31,4 @@ C:\Users\Clame\Desktop\DigitRecognitions\digit recognition\obj\Debug\digit_recog
 C:\Users\Clame\Desktop\DigitRecognitions\digit recognition\obj\Debug\digit recognition.csproj.GenerateResource.cache
 C:\Users\Clame\Desktop\DigitRecognitions\digit recognition\obj\Debug\digit recognition.exe
 C:\Users\Clame\Desktop\DigitRecognitions\digit recognition\obj\Debug\digit recognition.pdb
+C:\Users\Clame\Desktop\DigitRecognitions\digit recognition\obj\Debug\digit recognition.csproj.CoreCompileInputs.cache
