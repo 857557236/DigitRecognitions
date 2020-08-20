@@ -43,10 +43,7 @@ namespace digit_recognition
             int Green = draw.GetPixel(x, y).G;
             int Blue = draw.GetPixel(x, y).B;
             int temp = Red + Green + Blue;
-            if (temp < Form1.LightValue)
-            {
-                IsDraw = true;
-            }
+            if (temp < Form1.LightValue) IsDraw = true;
             return IsDraw;
         }
 

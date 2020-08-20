@@ -36,14 +36,11 @@ namespace digit_recognition
                 Form1.WriteToConsole(Langs.imageNotChoice);
                 return;
             }
-            else
+            else if (openFileDialog1.FileName.Equals(temp))
             {
-                if (openFileDialog1.FileName.Equals(temp))
-                {
-                    Form1.WriteToConsole(Langs.imageNotChange);
-                    Form1.OriginalImage = new Bitmap(openFileDialog1.FileName);
-                    Close();
-                }
+                Form1.WriteToConsole(Langs.imageNotChange);
+                Form1.OriginalImage = new Bitmap(openFileDialog1.FileName);
+                Close();
             }
             Form1.WriteToConsole(Langs.niceChoice);
             Form1.OriginalImage = new Bitmap(openFileDialog1.FileName);

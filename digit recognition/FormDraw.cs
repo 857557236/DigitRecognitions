@@ -12,6 +12,17 @@ namespace digit_recognition
 {
     public partial class FormDraw : Form
     {
+        private bool IsPressed = false;
+        private static Bitmap b;
+        private static Graphics g;
+        private static Pen p;
+
+        public FormDraw()
+        {
+            InitializeComponent();
+            updateLanguageOnForm(Langs.lang);
+            Clean();
+        }
 
         private void updateLanguageOnForm(string s)
         {
@@ -19,13 +30,6 @@ namespace digit_recognition
             Text = Langs.titleFormDraw;
             button1.Text = Langs.recog;
             button2.Text = Langs.clean;
-        }
-
-        public FormDraw()
-        {
-            InitializeComponent();
-            updateLanguageOnForm(Langs.lang);
-            Clean();
         }
 
         private void Clean()
@@ -49,7 +53,6 @@ namespace digit_recognition
             Close();
         }
 
-        private bool IsPressed = false;
         private void PictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             IsPressed = true;
@@ -57,9 +60,7 @@ namespace digit_recognition
             g = Graphics.FromImage(b);
             p = new Pen(Color.Black, 10);
         }
-        private static Bitmap b;
-        private static Graphics g;
-        private static Pen p;
+        
         private void PictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
             IsPressed = false;
@@ -72,7 +73,6 @@ namespace digit_recognition
                 g.DrawEllipse(p, new RectangleF(e.X, e.Y, 10, 10));
                 pictureBox1.Image = b;
             }
-            
         }
     }
 }

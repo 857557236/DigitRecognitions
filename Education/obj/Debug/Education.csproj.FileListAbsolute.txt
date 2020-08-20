@@ -5,3 +5,10 @@ C:\Users\Clame\Desktop\Education\obj\Debug\Education.csprojAssemblyReference.cac
 C:\Users\Clame\Desktop\Education\obj\Debug\Education.csproj.CoreCompileInputs.cache
 C:\Users\Clame\Desktop\Education\obj\Debug\Education.exe
 C:\Users\Clame\Desktop\Education\obj\Debug\Education.pdb
+C:\Users\Clame\Desktop\DigitRecognitions\Education\bin\Debug\Education.exe.config
+C:\Users\Clame\Desktop\DigitRecognitions\Education\bin\Debug\Education.exe
+C:\Users\Clame\Desktop\DigitRecognitions\Education\bin\Debug\Education.pdb
+C:\Users\Clame\Desktop\DigitRecognitions\Education\obj\Debug\Education.csprojAssemblyReference.cache
+C:\Users\Clame\Desktop\DigitRecognitions\Education\obj\Debug\Education.csproj.CoreCompileInputs.cache
+C:\Users\Clame\Desktop\DigitRecognitions\Education\obj\Debug\Education.exe
+C:\Users\Clame\Desktop\DigitRecognitions\Education\obj\Debug\Education.pdb

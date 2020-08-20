@@ -44,11 +44,10 @@ namespace Education
 
             int tempRES = -1;
             for (int i = 0; i < 10; i++) if (SumWeights.Max() == SumWeights[i]) tempRES = i;
-            //////////////////обучение
-            ///
-            if((tempRES != Result) && (tempRES != -1))
+
+            if ((tempRES != Result) && (tempRES != -1))
             {
-                for(int i = 0; i<drawNeuronList.Count; i++)
+                for (int i = 0; i < drawNeuronList.Count; i++)
                 {
                     double[] mas = drawNeuronList.ElementAt(i).GetWeights();
                     mas[Result] = mas[Result] + 2;
@@ -59,13 +58,8 @@ namespace Education
                 return false;
             }
 
+            if (tempRES == -1) return false;
 
-
-            ///
-            if (tempRES == -1)
-            {
-                return false;
-            }
             if (tempRES != Result) return false;
             return true;
         }
@@ -78,13 +72,8 @@ namespace Education
             int maxY = int.MinValue;
 
             for (int x = 0; x < image.Width; x++)
-            {
                 for (int y = 0; y < image.Height; y++)
-                {
-                    if (image.GetPixel(x, y).Name == "ffffffff")
-                    {
-                        continue;
-                    }
+                    if (image.GetPixel(x, y).Name == "ffffffff") continue;
                     else
                     {
                         if (x < minX) minX = x;
@@ -92,17 +81,11 @@ namespace Education
                         if (y < minY) minY = y;
                         if (y > maxY) maxY = y;
                     }
-                }
-            }
 
             Bitmap newImage = new Bitmap(maxX - minX + 1, maxY - minY + 1);
             for (int x = 0; x < maxX - minX + 1; x++)
-            {
                 for (int y = 0; y < maxY - minY + 1; y++)
-                {
                     newImage.SetPixel(x, y, image.GetPixel(x + minX, y + minY));
-                }
-            }
 
             return newImage;
         }

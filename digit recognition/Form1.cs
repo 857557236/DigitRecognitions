@@ -13,41 +13,57 @@ namespace digit_recognition
 {
     public partial class Form1 : Form
     {
-        private static Neuron[,] neurons = new Neuron[20,20];
+        private static Neuron[,] neurons = new Neuron[20, 20];
         public static int LightValue = 650;
         private static Bitmap Original20x20SizeImage;
         public static Bitmap OriginalImage;
         public static Queue<string> TextToConsole = new Queue<string>();
 
-        private void WriteToConsoleEverytime()
+        public Form1()
         {
-            while (TextToConsole.Count == 0)
-            {
-
-            }
+            InitializeComponent();
+            LoadLang();
+            RunConsole();
+            for (int i = 0; i < 20; i++)
+                for (int j = 0; j < 20; j++)
+                    neurons[i, j] = new Neuron();
+            label3.Visible = false;
+            button4.Visible = false;
+            label3.Location = new Point(34, 221);
+            WriteToConsole(Langs.load);
+            ReadWriteWeights.CreateOrLoadWeights(neurons);
+            WriteToConsole(Langs.loadSuccessful);
+            WriteToConsole(Langs.startSuccessful);
         }
-
 
         public static void WriteToConsole(String text)
         {
-            DateTime dt = new DateTime();
-            dt = DateTime.Now;
-            string hours = dt.Hour.ToString(),
-                minutes = dt.Minute.ToString(),
-                seconds = dt.Second.ToString();
-            if (hours.Length == 1) hours = "0" + hours;
-            if (minutes.Length == 1) minutes = "0" + minutes;
-            if (seconds.Length == 1) seconds = "0" + seconds;
+            DateTime dt = DateTime.Now;
             if (!text.Equals(Langs.load))
-            {
-                TextToConsole.Enqueue("\n\r\n\r" + ("[" + hours + ":" + minutes + ":" + seconds + "] ") + text);
-            }
-            else{
-                TextToConsole.Enqueue(("[" + hours + ":" + minutes + ":" + seconds + "] ") + text);
-            }
-            
+                TextToConsole.Enqueue("\n\r\n\r" + "[" + dt.ToString("HH:mm:ss") + "] " + text);
+            else
+                TextToConsole.Enqueue("[" + dt.ToString("HH:mm:ss") + "] " + text);
         }
 
+        private void LoadLang()
+        {
+            if (File.Exists("lang.txt"))
+            {
+                StreamReader sr = new StreamReader("lang.txt");
+                string lang = sr.ReadToEnd();
+                sr.Close();
+                radioButton1.Checked = lang.Equals("Russian") ? true : false;
+                radioButton2.Checked = lang.Equals("English") ? true : false;
+                updateLanguageOnForm(lang);
+            }
+            else
+            {
+                StreamWriter sw = new StreamWriter("lang.txt");
+                sw.Write("Russian");
+                updateLanguageOnForm("Russian");
+                sw.Close();
+            }
+        }
 
         private void updateLanguageOnForm(string s)
         {
@@ -62,28 +78,11 @@ namespace digit_recognition
             groupBox1.Text = Langs.textOutput;
         }
 
-        public Form1()
-        {
-            InitializeComponent();
-            updateLanguageOnForm("Russian");
-            RunConsole();
-            for (int i = 0; i < 20; i++)
-                for(int j = 0; j<20; j++)
-                    neurons[i,j] = new Neuron();
-            label3.Visible = false;
-            button4.Visible = false;
-            label3.Location = new Point(34, 221);
-            WriteToConsole(Langs.load);
-            ReadWriteWeights.CreateOrLoadWeights(neurons);
-            WriteToConsole(Langs.loadSuccessful);
-            WriteToConsole(Langs.startSuccessful);
-        }
-
         private async void RunConsole()
         {
             while (true)
             {
-                await Task.Run(() => WriteToConsoleEverytime());
+                await Task.Run(() => { while (TextToConsole.Count == 0) { } });
                 textBox1.AppendText(TextToConsole.Dequeue());
                 textBox1.Refresh();
             }
@@ -94,7 +93,7 @@ namespace digit_recognition
             WriteToConsole(Langs.startWork);
             FormChoice fc = new FormChoice();
             fc.ShowDialog();
-            if(OriginalImage== null)
+            if (OriginalImage == null)
             {
                 WriteToConsole(Langs.repeat);
                 return;
@@ -138,11 +137,7 @@ namespace digit_recognition
                     int Green = b.GetPixel(i, j).G;
                     int Blue = b.GetPixel(i, j).B;
                     int temp = Red + Green + Blue;
-                    //(255 + 255 + 255)/2 = 382.5
-                    if (temp < LightValue)
-                    {
-                        b.SetPixel(i, j, Color.Red);
-                    }
+                    if (temp < LightValue) b.SetPixel(i, j, Color.Red);
                 }
             pictureBox1.Image = b;
         }
@@ -154,14 +149,10 @@ namespace digit_recognition
             int minY = int.MaxValue;
             int maxY = int.MinValue;
 
-            for (int x = 0; x<image.Width; x++)
-            {
-                for(int y = 0; y<image.Height; y++)
+            for (int x = 0; x < image.Width; x++)
+                for (int y = 0; y < image.Height; y++)
                 {
-                    if(image.GetPixel(x, y).Name == "ffffffff")
-                    {
-                        continue;
-                    }
+                    if (image.GetPixel(x, y).Name == "ffffffff") continue;
                     else
                     {
                         if (x < minX) minX = x;
@@ -170,16 +161,11 @@ namespace digit_recognition
                         if (y > maxY) maxY = y;
                     }
                 }
-            }
 
             Bitmap newImage = new Bitmap(maxX - minX + 1, maxY - minY + 1);
             for (int x = 0; x < maxX - minX + 1; x++)
-            {
                 for (int y = 0; y < maxY - minY + 1; y++)
-                {
                     newImage.SetPixel(x, y, image.GetPixel(x + minX, y + minY));
-                }
-            }
 
             return newImage;
         }
@@ -197,11 +183,7 @@ namespace digit_recognition
                     int Green = b.GetPixel(i, j).G;
                     int Blue = b.GetPixel(i, j).B;
                     int temp = Red + Green + Blue;
-                    //(255 + 255 + 255)/2 = 382.5
-                    if (temp < LightValue)
-                    {
-                        b.SetPixel(i, j, Color.Red);
-                    }
+                    if (temp < LightValue) b.SetPixel(i, j, Color.Red);
                 }
             pictureBox1.Image = b;
         }
@@ -214,17 +196,17 @@ namespace digit_recognition
             pictureBox1.Image = OriginalImage;
             Bitmap draw = new Bitmap(Original20x20SizeImage);
             LinkedList<Neuron> drawNeuronList = new LinkedList<Neuron>();
-            for(int i = 0; i<20;i++)
-                for(int j = 0; j < 20; j++)
+            for (int i = 0; i < 20; i++)
+                for (int j = 0; j < 20; j++)
                 {
                     neurons[i, j].DropIsDraw();
-                    if (neurons[i, j].Scan(draw, i, j)) drawNeuronList.AddLast(neurons[i,j]);
+                    if (neurons[i, j].Scan(draw, i, j)) drawNeuronList.AddLast(neurons[i, j]);
                 }
 
             double[] SumWeights = new double[10];
             for (int i = 0; i < SumWeights.Length; i++) SumWeights[i] = 0;
 
-            for(int i = 0;i < drawNeuronList.Count; i++)
+            for (int i = 0; i < drawNeuronList.Count; i++)
             {
                 Neuron temp = drawNeuronList.ElementAt(i);
                 for (int j = 0; j < 10; j++) SumWeights[j] += temp.GetWeights(j);
@@ -234,9 +216,9 @@ namespace digit_recognition
             for (int i = 0; i < 10; i++) if (SumWeights.Max() == SumWeights[i]) tempRES = i;
             WriteToConsole(Langs.scanEnded);
 
-                WriteToConsole(Langs.foundDigit + " " + tempRES + " .");
-                label3.Text = tempRES.ToString();
-                label3.Visible = true;
+            WriteToConsole(Langs.foundDigit + " " + tempRES + " .");
+            label3.Text = tempRES.ToString();
+            label3.Visible = true;
             button4.Visible = true;
             WriteToConsole("====================================");
         }
@@ -245,10 +227,7 @@ namespace digit_recognition
         {
             if (!Directory.Exists("ErrorsImages\\")) Directory.CreateDirectory("ErrorsImages\\");
             int count = 0;
-            while(File.Exists("ErrorsImages\\" + count.ToString() + ".png"))
-            {
-                count++;
-            }
+            while (File.Exists("ErrorsImages\\" + count.ToString() + ".png")) count++;
             string dir = "ErrorsImages\\" + count.ToString() + ".png";
             WriteToConsole(Langs.errorRecogSaved + " " + dir);
             OriginalImage.Save(dir);
@@ -259,10 +238,16 @@ namespace digit_recognition
         {
             if (radioButton1.Checked)
             {
+                StreamWriter sw = new StreamWriter("lang.txt");
+                sw.Write("Russian");
+                sw.Close();
                 updateLanguageOnForm("Russian");
             }
             else
             {
+                StreamWriter sw = new StreamWriter("lang.txt");
+                sw.Write("English");
+                sw.Close();
                 updateLanguageOnForm("English");
             }
         }
